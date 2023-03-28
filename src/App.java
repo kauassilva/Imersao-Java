@@ -10,10 +10,10 @@ import java.util.List;
 import java.util.Map;
 
 /*
- * A classe realiza uma chamada a uma API para obter dados sobre os filmes mais populares. Ele usa a classe
- * HttpClient para fazer uma solicitação GET a um URL que aponta para um arquivo JSON que contém informações
- * sobre esses filmes. Ele armazena a resposta como uma String usando a classe HttpResponse e o manipulador
- * de corpo BodyHandlers
+ * A classe realiza uma chamada a uma API para obter dados sobre os filmes mais populares. Em seguida, faz o download
+ * das imagens dos filmes encontrados e, em seguida, usa uma classe chamada 'GeradoraDeFigurinhas' para criar
+ * figurinhas com as informações dos filmes. O código, uma nova pasta 'figurinhas' no diretório atual e salva as
+ * figurinhas nessa pasta. As informações sobre os filmes são exibidas no console durante o processo.
  */
 public class App {
 

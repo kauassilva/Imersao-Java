@@ -8,7 +8,6 @@ import java.util.regex.Pattern;
 /*
  * A classe 'JsonParser' contém um método 'parse()' que recebe uma String JSON como entrada e retorna uma lista de
  * mapas que contém os atributos e seus respectivos valores do objeto JSON.
- * 
  * A classe pode ser útil para analisar e manipular objetos JSON de estrutura semelhante.
  */
 public class JsonParser {
@@ -20,11 +19,9 @@ public class JsonParser {
    * O método usa expressões regulares para analisar a String JSON. A primeira expressão regular (REGEX_ITEMS)
    * encontra a lista de itens dentro do objeto JSON, enquanto a segunda expressão regular (REGEX_ATTRIBUTES_JSON)
    * encontra os atributos e seus respectivos valores dentro de cada item.
-   * 
    * O método retorna uma lista de mapas, onde cada mapa representa um item na lista de itens JSON. O mapa contém
    * os atributos e seus respectivos valores, onde a chave é o nome do atributo e o valor é o valor correspondente
    * do atributo.
-   * 
    * Se a lista de itens não for encontrada na String JSON, o método lança uma exceção 'IllegalArgumentException'.
    */
   public List<Map<String, String>> parse(String json) {
