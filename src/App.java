@@ -49,10 +49,10 @@ public class App {
          * ----------------------------------------
          */
         for (Map<String, String> movie : movieList) {
-            System.out.println(movie.get("title"));
-            System.out.println(movie.get("image"));
-            System.out.println(movie.get("imDbRating"));
             System.out.println();
+            System.out.println("\u001b[1m\u001b[33mTítulo:\u001b[m "+movie.get("title"));
+            System.out.println("\u001b[1m\u001b[33mURL da imagem:\u001b[m "+movie.get("image"));
+            System.out.println("\u001b[1m\u001b[33mNota:\u001b[m "+movie.get("imDbRating"));
         }
 
     }
