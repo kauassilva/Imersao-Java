@@ -18,7 +18,7 @@ import javax.imageio.ImageIO;
  * Esta classe contém um método 'cria()'. O objetivo deste método é criar uma nova imagem a partir de uma imagem
  * original, escrevendo uma frase em baixo da imagem e salvando-a em um arquivo.
  */
-public class GeradoraDeFigurinhas {
+public class GeradoraFigurinhas {
 
   /**
    * O método recebe como parâmetros um objeto 'InputStream' que representa a imagem original e uma 'String' com
