@@ -12,17 +12,13 @@ public class App {
 
     public static void main(String[] args) throws Exception {
         /*
-         * Extrair dados do IMDB ou da NASA
-         * ----------------------------------------
-         */ 
-        
-        // IMDB
-        String url = "https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/TopMovies.json";
-        ExtratorConteudo extrator = new ExtratorConteudoIMDB();
+        * Extrair dados do IMDB ou da NASA
+        * ----------------------------------------
+        */ 
+        API api = API.NASA;
+        String url = api.getUrl();
 
-        // NASA
-        // String url = "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&start_date=2004-05-01&end_date=2004-05-3";
-        // ExtratorConteudo extrator = new ExtratorConteudoNasa();
+        ExtratorConteudo extrator = api.getExtrator();
         
         var http = new ClienteHttp();
         String json = http.buscaDados(url);
@@ -36,8 +32,7 @@ public class App {
 
         var geradora = new GeradoraFigurinhas();
 
-        for (int i=0; i<listaConteudos.size(); i++) {
-
+        for (int i=0; i<3; i++) {
             Conteudo conteudo = listaConteudos.get(i);
 
             InputStream inputStream = new URL(conteudo.urlImagem()).openStream();
