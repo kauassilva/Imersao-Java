@@ -1,8 +1,6 @@
-import java.io.File;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.List;
-import java.util.Map;
 
 /*
  * A classe realiza uma chamada a uma API para obter dados sobre os filmes mais populares. Em seguida, faz o download
@@ -42,13 +40,13 @@ public class App {
 
             Conteudo conteudo = listaConteudos.get(i);
 
-            InputStream inputStream = new URL(conteudo.getUrlImagem()).openStream();
-            String nomeArquivo = "figurinhas/"+conteudo.getTitulo()+".png";
+            InputStream inputStream = new URL(conteudo.urlImagem()).openStream();
+            String nomeArquivo = "figurinhas/"+conteudo.titulo()+".png";
 
             geradora.cria(inputStream, nomeArquivo); 
 
             System.out.println();
-            System.out.println("\u001b[1m\u001b[33mTítulo:\u001b[m "+conteudo.getTitulo());
+            System.out.println("\u001b[1m\u001b[33mTítulo:\u001b[m "+conteudo.titulo());
             // Imprime a URL da imagem
             //System.out.println("\u001b[1m\u001b[33mURL da imagem:\u001b[m "+conteudo.getUrlImagem());
         }

@@ -1,3 +1,7 @@
+public record Conteudo(String titulo, String urlImagem) {}
+
+// O 'Record' subistitui todo este código:
+/*
 public class Conteudo {
   
   private final String titulo;
@@ -16,3 +20,4 @@ public class Conteudo {
   }  
 
 }
+*/
