@@ -12,24 +12,31 @@ public class App {
 
     public static void main(String[] args) throws Exception {
         /*
-        * Extrair dados do IMDB ou da NASA
-        * ----------------------------------------
-        */ 
+         * Define a API a ser utilizada (API.NASA ou API.IMDB_TOP_MOVIES) e a URL correspondente.
+         */ 
         API api = API.NASA;
         String url = api.getUrl();
 
+        /*
+         * Obtém o 'ExtratorConteudo' a ser utilizado a partir da API.
+         */
         ExtratorConteudo extrator = api.getExtrator();
         
+        /*
+         * Utiliza a classe ClienteHttp para fazer uma requisição HTTP à URL definida e obter um JSON como resposta.
+         */
         var http = new ClienteHttp();
         String json = http.buscaDados(url);
 
-
         /*
-         * Exibir e manipular os dados
-         * ----------------------------------------
+         * Utiliza o ExtratorConteudo para extrair uma lista de conteúdos a partir do JSON obtido.
          */
         List<Conteudo> listaConteudos = extrator.extraiConteudos(json);
 
+        /*
+         * Utiliza a classe 'GeradoraFigurinhas' para gerar até três figurinhas a partir das imagens dos três
+         * primeiros conteúdos da lista.
+         */
         var geradora = new GeradoraFigurinhas();
 
         for (int i=0; i<3; i++) {
@@ -40,10 +47,12 @@ public class App {
 
             geradora.cria(inputStream, nomeArquivo); 
 
+            /*
+             * Imprime o título e a URL da imagem de cada Conteúdo.
+             */
             System.out.println();
             System.out.println("\u001b[1m\u001b[33mTítulo:\u001b[m "+conteudo.titulo());
-            // Imprime a URL da imagem
-            //System.out.println("\u001b[1m\u001b[33mURL da imagem:\u001b[m "+conteudo.getUrlImagem());
+            System.out.println("\u001b[1m\u001b[33mURL da imagem:\u001b[m "+conteudo.urlImagem());
         }
 
     }

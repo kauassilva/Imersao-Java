@@ -1,3 +1,9 @@
+/*
+ * Essa Enum define dois valores possíveis, 'IMDB_TOP_MOVIES' e 'NASA', que representam APIs diferentes. Cada
+ * valor é inicializado com uma URL e um extrator de conteúdo associado a essa API.
+ * Essa Enum é útil para representar APIs diferentes de maneira estruturada e para facilitar o uso das APIs no 
+ * programa, pois centraliza a definição da URL e do extrator de conteúdo associados a cada API.
+ */
 public enum API {
   
   IMDB_TOP_MOVIES(
