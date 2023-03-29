@@ -1,13 +1,6 @@
-import java.io.File;
 import java.io.InputStream;
-import java.net.URI;
 import java.net.URL;
-import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
-import java.net.http.HttpResponse.BodyHandlers;
 import java.util.List;
-import java.util.Map;
 
 /*
  * A classe realiza uma chamada a uma API para obter dados sobre os filmes mais populares. Em seguida, faz o download
@@ -19,47 +12,47 @@ public class App {
 
     public static void main(String[] args) throws Exception {
         /*
-         * Fazer uma conexão HTTP e buscar os top filmes
-         * ----------------------------------------
+         * Define a API a ser utilizada (API.NASA ou API.IMDB_TOP_MOVIES) e a URL correspondente.
          */ 
-        String url = "https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/TopMovies.json";
-        URI address = URI.create(url);
-        var client = HttpClient.newHttpClient();
-        var request = HttpRequest.newBuilder(address).GET().build();
-        HttpResponse<String> response = client.send(request, BodyHandlers.ofString());
-        String body = response.body();
-
+        API api = API.NASA;
+        String url = api.getUrl();
 
         /*
-         * Extrair só os dados que interessam (Título, poster, classificação)
-         * ----------------------------------------
+         * Obtém o 'ExtratorConteudo' a ser utilizado a partir da API.
          */
-        var parser = new JsonParser();
-        List<Map<String, String>> movieList = parser.parse(body);
-
+        ExtratorConteudo extrator = api.getExtrator();
+        
+        /*
+         * Utiliza a classe ClienteHttp para fazer uma requisição HTTP à URL definida e obter um JSON como resposta.
+         */
+        var http = new ClienteHttp();
+        String json = http.buscaDados(url);
 
         /*
-         * Exibir e manipular os dados
-         * ----------------------------------------
+         * Utiliza o ExtratorConteudo para extrair uma lista de conteúdos a partir do JSON obtido.
          */
-        var geradora = new GeradoraDeFigurinhas();
-        var diretorio = new File("figurinhas/");
-        diretorio.mkdir();
+        List<Conteudo> listaConteudos = extrator.extraiConteudos(json);
 
-        for (Map<String, String> movie : movieList) {
-            String urlImagem = movie.get("image");
-            String titulo = movie.get("title");
-            String nota = movie.get("imDbRating");
+        /*
+         * Utiliza a classe 'GeradoraFigurinhas' para gerar até três figurinhas a partir das imagens dos três
+         * primeiros conteúdos da lista.
+         */
+        var geradora = new GeradoraFigurinhas();
 
-            InputStream inputStream = new URL(urlImagem).openStream();
-            String nomeArquivo = "figurinhas/"+titulo+".png";
+        for (int i=0; i<3; i++) {
+            Conteudo conteudo = listaConteudos.get(i);
+
+            InputStream inputStream = new URL(conteudo.urlImagem()).openStream();
+            String nomeArquivo = "figurinhas/"+conteudo.titulo()+".png";
 
             geradora.cria(inputStream, nomeArquivo); 
 
+            /*
+             * Imprime o título e a URL da imagem de cada Conteúdo.
+             */
             System.out.println();
-            System.out.println("\u001b[1m\u001b[33mTítulo:\u001b[m "+titulo);
-            System.out.println("\u001b[1m\u001b[33mURL da imagem:\u001b[m "+urlImagem);
-            System.out.println("\u001b[1m\u001b[33mNota:\u001b[m "+nota);
+            System.out.println("\u001b[1m\u001b[33mTítulo:\u001b[m "+conteudo.titulo());
+            System.out.println("\u001b[1m\u001b[33mURL da imagem:\u001b[m "+conteudo.urlImagem());
         }
 
     }
