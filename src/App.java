@@ -17,12 +17,12 @@ public class App {
          */ 
         
         // IMDB
-        //String url = "https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/TopMovies.json";
-        //ExtratorConteudo extrator = new ExtratorConteudoIMDB();
+        String url = "https://raw.githubusercontent.com/alura-cursos/imersao-java-2-api/main/TopMovies.json";
+        ExtratorConteudo extrator = new ExtratorConteudoIMDB();
 
         // NASA
-        String url = "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&start_date=2004-05-01&end_date=2004-05-3";
-        ExtratorConteudo extrator = new ExtratorConteudoNasa();
+        // String url = "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&start_date=2004-05-01&end_date=2004-05-3";
+        // ExtratorConteudo extrator = new ExtratorConteudoNasa();
         
         var http = new ClienteHttp();
         String json = http.buscaDados(url);
