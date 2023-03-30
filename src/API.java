@@ -13,6 +13,10 @@ public enum API {
   NASA(
     "https://api.nasa.gov/planetary/apod?api_key=DEMO_KEY&start_date=2004-05-01&end_date=2004-05-3", 
     new ExtratorConteudoNasa()
+  ),
+  LANGUAGES(
+    "http://localhost:8080/linguagens",
+    new ExtratorConteudoIMDB()
   );
 
   private String url;

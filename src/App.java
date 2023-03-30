@@ -14,7 +14,7 @@ public class App {
         /*
          * Define a API a ser utilizada (API.NASA ou API.IMDB_TOP_MOVIES) e a URL correspondente.
          */ 
-        API api = API.NASA;
+        API api = API.LANGUAGES;
         String url = api.getUrl();
 
         /*
